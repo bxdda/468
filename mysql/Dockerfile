@@ -1,8 +1,5 @@
-FROM python
+FROM mysql/mysql-server:latest
 
-WORKDIR /users/bxdda/myImage
-COPY . .
+COPY cattle_data.csv /cattle_data.csv
 
-RUN apt-get update
-RUN pip install mysql-connector-python
-CMD ["python", "./a3.py"]
+COPY init.sql /docker-entrypoint-initdb.d/init.sql
